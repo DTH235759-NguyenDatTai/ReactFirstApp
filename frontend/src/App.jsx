@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProductCard from "./components/ProductCard";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -30,10 +31,10 @@ function App() {
 
             <div>
                 {products.map(product => (
-                    <div key={product.id}>
-                        <h2>{product.ten_sp}</h2>
-                        <p>{product.gia} VNĐ</p>
-                    </div>
+                    <ProductCard
+                        key={product.id}
+                        product={product}    
+                    />
                 ))}
             </div>
         </div>
