@@ -7,7 +7,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import ProductCard from "./components/ProductCard";
-
+import { Routes, Route } from "react-router-dom";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
 
@@ -76,49 +77,39 @@ function App() {
     // hiển thị thông báo loading.
     if (loading) {
         return (
-            <h2>
-                Đang tải sản phẩm...
-            </h2>
+            <h2>Đang tải sản phẩm...</h2>
         );
     }
 
 
     return (
         <>
-
-            {/* Thanh menu */}
             <Navbar />
 
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <main className="container">
+                            <h1 className="page-title">Sản phẩm mới nhất</h1>
 
-            {/* Nội dung chính */}
-            <main className="container">
+                            <div className="product-grid">
+                                {products.map(product => (
+                                    <ProductCard
+                                        key={product.id}
+                                        product={product}
+                                    />
+                                ))}
+                            </div>
+                        </main>
+                    }
+                />
 
-                <h1 className="page-title">
-                    Sản phẩm mới nhất
-                </h1>
-
-
-                {/* 
-                    products là một Array.
-
-                    map() sẽ duyệt qua từng sản phẩm
-                    và tạo ra một ProductCard.
-                */}
-                <div className="product-grid">
-
-                    {products.map(product => (
-
-                        <ProductCard
-                            key={product.id}
-                            product={product}
-                        />
-
-                    ))}
-
-                </div>
-
-            </main>
-
+                <Route
+                    path="/products/:id"
+                    element={<ProductDetail />}
+                />
+            </Routes>
         </>
     );
 }

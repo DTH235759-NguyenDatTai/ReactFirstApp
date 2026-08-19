@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function ProductCard({ product }) {
 
@@ -15,52 +16,35 @@ function ProductCard({ product }) {
     return (
         <div className="product-card">
 
-            {/* 
-                Sau này chúng ta sẽ lấy ảnh từ database.
-                Tạm thời sử dụng ảnh placeholder.
-            */}
             <div className="product-image">
                 <img
-                    src="https://via.placeholder.com/300x350"
+                    src={`http://127.0.0.1:8070/clothing-store/backend/images/${product.hinh_anh}`}
                     alt={product.ten_sp}
                 />
             </div>
-
 
             {/* Thông tin sản phẩm */}
             <div className="product-info">
 
                 {/* Tên sản phẩm lấy từ database */}
-                <h3>
-                    {product.ten_sp}
-                </h3>
+                <h3> {product.ten_sp} </h3>
 
                 {/* Giá sản phẩm */}
-                <p className="product-price">
-                    {formattedPrice} VNĐ
-                </p>
+                <p className="product-price">{formattedPrice} VNĐ</p>
 
-                {/* Số lượng còn lại */}
-                <p className="product-stock">
-                    Còn {product.soluong} sản phẩm
-                </p>
+                <p className="product-stock">Còn {product.soluong} sản phẩm</p>
 
-
-                {/* Các button */}
                 <div className="product-buttons">
 
-                    <button className="detail-button">
-                        Xem chi tiết
-                    </button>
+                    <Link
+                        to={`/products/${product.id}`}
+                        className="detail-button">Xem chi tiết    
+                    </Link>
 
-                    <button className="cart-button">
-                        Thêm vào giỏ
-                    </button>
+                    <button className="cart-button">Thêm vào giỏ</button>
 
                 </div>
-
             </div>
-
         </div>
     );
 }

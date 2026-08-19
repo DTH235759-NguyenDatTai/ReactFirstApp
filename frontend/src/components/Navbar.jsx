@@ -1,9 +1,8 @@
 function Navbar(){
     return(
-        <nav>
+        <nav className="navbar">
             <div className="logo">Clothing Store</div>
 
-            {/* Điều hướng */}
             <div className="nav-links">
                 <a href="#">Trang chủ</a>
                 <a href="#">Sản phẩm</a>

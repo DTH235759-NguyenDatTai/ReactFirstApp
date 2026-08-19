@@ -1,26 +1,53 @@
 <?php
 
-header("Access-Control-Allow-Origin: http://localhost:5173"); // do php chạy theo 127.0.0.1 còn react chạy localhost nên cần dòng này
+header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
 
 require_once "../config/database.php";
 
-header("Content-Type: application/json; charset=UTF-8");
-
 try {
-    $sql = "SELECT * FROM sanpham";
+    // Kiểm tra URL có truyền id hay không
+    if (isset($_GET["id"])) {
 
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
+        $id = $_GET["id"];
 
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Lấy một sản phẩm theo id
+        $sql = "SELECT * FROM sanpham WHERE id = ?";
 
-    echo json_encode([
-        "success" => true,
-        "data" => $products
-    ]);
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($product) {
+            echo json_encode([
+                "success" => true,
+                "data" => $product
+            ]);
+        } else {
+            echo json_encode([
+                "success" => false,
+                "message" => "Không tìm thấy sản phẩm"
+            ]);
+        }
+
+    } else {
+
+        // Nếu không có id thì lấy tất cả sản phẩm
+        $sql = "SELECT * FROM sanpham";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo json_encode([
+            "success" => true,
+            "data" => $products
+        ]);
+    }
 
 } catch (PDOException $e) {
 
