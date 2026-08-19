@@ -11,7 +11,7 @@ function Navbar(){
                 <a href="#">Liên hệ</a>
             </div>
 
-            <div className="nav-actor">
+            <div className="nav-actions">
                 <button>🛒 Giỏ hàng</button>
                 <button>Đăng nhập</button>
             </div>
