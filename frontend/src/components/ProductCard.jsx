@@ -18,7 +18,7 @@ function ProductCard({ product }) {
 
             <div className="product-image">
                 <img
-                    src={`http://127.0.0.1:8070/clothing-store/backend/images/${product.hinh_anh}`}
+                    src={`http://localhost:8070/clothing-store/backend/images/${product.hinh_anh}`}
                     alt={product.ten_sp}
                 />
             </div>

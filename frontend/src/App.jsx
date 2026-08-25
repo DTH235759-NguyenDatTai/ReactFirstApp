@@ -32,7 +32,7 @@ function App() {
 
         // Gửi request GET tới PHP API
         fetch(
-            "http://127.0.0.1:8070/clothing-store/backend/api/products.php"
+            "http://localhost:8070/clothing-store/backend/api/products.php"
         )
 
             // Chuyển response từ PHP thành JSON
@@ -88,8 +88,7 @@ function App() {
 
             <Routes>
                 <Route
-                    path="/"
-                    element={
+                    path="/" element={
                         <main className="container">
                             <h1 className="page-title">Sản phẩm mới nhất</h1>
 
@@ -105,10 +104,7 @@ function App() {
                     }
                 />
 
-                <Route
-                    path="/products/:id"
-                    element={<ProductDetail />}
-                />
+                <Route path="/products/:id" element={<ProductDetail />} />
             </Routes>
         </>
     );
