@@ -1,11 +1,14 @@
 import "./ProductDetail.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; /* dùng để chuyển trang trong react */
+import { useNavigate } from "react-router-dom";
 
 function ProductsDetail(){
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
     
     useEffect(() => {
         fetch(`http://localhost:8070/clothing-store/backend/api/products.php?id=${id}`)
@@ -28,6 +31,8 @@ function ProductsDetail(){
     }
 
     const formattedPrice = Number(product.gia).toLocaleString("vi-VN");
+    const totalPrice = Number(product.gia) * quantity;
+    const formattedTotalPrice = totalPrice.toLocaleString("vi-VN");
 
     return (
         <div className="product-detail">
@@ -43,9 +48,40 @@ function ProductsDetail(){
                 <p className="product-detail-description">{product.mo_ta}</p>
                 <p className="product-detail-stock">Còn {product.soluong} sản phẩm</p>
 
+                <div className="quantity-section">
+                    <p>Số lượng</p>
+
+                    <div className="quantity-control">
+                        <button
+                            onClick={() => setQuantity(quantity - 1)}
+                            disabled={quantity <= 1}
+                        >
+                            -
+                        </button>
+
+                        <span>{quantity}</span>
+
+                        <button
+                            onClick={() => setQuantity(quantity + 1)}
+                            disabled={quantity >= product.soluong}
+                        >
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                <p className="product-total">
+                    Tổng tiền: {formattedTotalPrice} VNĐ
+                </p>
+
                 <div className="product-actions">
                     <button className="cart-button">Thêm vào giỏ hàng</button>
-                    <button className="buy-button">Thanh toán ngay</button>
+                    <button
+                        className="buy-button"
+                        onClick={() => navigate(`/checkout/${product.id}?quantity=${quantity}`)}
+                    >
+                        Thanh toán ngay
+                    </button>
                 </div>
             </div>
         </div>

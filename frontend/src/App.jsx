@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import ProductCard from "./components/ProductCard";
 import { Routes, Route } from "react-router-dom";
 import ProductDetail from "./pages/ProductDetail";
+import Checkout from "./pages/Checkout";
 
 function App() {
 
@@ -105,6 +106,7 @@ function App() {
                 />
 
                 <Route path="/products/:id" element={<ProductDetail />} />
+                <Route path="/checkout/:id" element={<Checkout />} />
             </Routes>
         </>
     );
