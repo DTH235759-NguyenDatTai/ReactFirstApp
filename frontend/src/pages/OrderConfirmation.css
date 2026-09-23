@@ -1,0 +1,90 @@
+.order-confirmation {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: #4CAF50;
+    color: white;
+    font-size: 50px;
+    line-height: 80px;
+    border-radius: 50%;
+}
+
+.order-confirmation h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.order-id {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.confirmation-message {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.confirmation-message p {
+    margin: 10px 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+.confirmation-actions {
+    margin-top: 30px;
+}
+
+.continue-shopping-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.continue-shopping-button:hover {
+    background: #1976D2;
+}
+
+.order-confirmation-error {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-confirmation-error h2 {
+    color: #f44336;
+    margin-bottom: 20px;
+}
+
+.back-home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}

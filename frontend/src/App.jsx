@@ -10,6 +10,7 @@ import ProductCard from "./components/ProductCard";
 import { Routes, Route } from "react-router-dom";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
 
 function App() {
 
@@ -107,6 +108,7 @@ function App() {
 
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/checkout/:id" element={<Checkout />} />
+                <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
             </Routes>
         </>
     );
