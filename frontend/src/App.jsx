@@ -11,6 +11,11 @@ import { Routes, Route } from "react-router-dom";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import Cart from "./pages/Cart";
+import CartCheckout from "./pages/CartCheckout";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import OrderHistory from "./pages/OrderHistory";
 
 function App() {
 
@@ -108,7 +113,12 @@ function App() {
 
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/checkout/:id" element={<Checkout />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/cart-checkout" element={<CartCheckout />} />
                 <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/order-history" element={<OrderHistory />} />
             </Routes>
         </>
     );

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function ProductCard({ product }) {
+    const { addToCart } = useCart();
 
     // Chuyển giá từ database thành dạng tiền Việt.
     //
@@ -12,6 +14,10 @@ function ProductCard({ product }) {
     const formattedPrice = Number(product.gia)
         .toLocaleString("vi-VN");
 
+    const handleAddToCart = () => {
+        addToCart(product, 1);
+        alert(`Đã thêm ${product.ten_sp} vào giỏ hàng!`);
+    };
 
     return (
         <div className="product-card">
@@ -41,7 +47,9 @@ function ProductCard({ product }) {
                         className="detail-button">Xem chi tiết    
                     </Link>
 
-                    <button className="cart-button">Thêm vào giỏ</button>
+                    <button className="cart-button" onClick={handleAddToCart}>
+                        Thêm vào giỏ
+                    </button>
 
                 </div>
             </div>

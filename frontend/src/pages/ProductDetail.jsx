@@ -2,6 +2,7 @@ import "./ProductDetail.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; /* dùng để chuyển trang trong react */
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function ProductsDetail(){
     const { id } = useParams();
@@ -9,6 +10,7 @@ function ProductsDetail(){
     const [loading, setLoading] = useState(true);
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
+    const { addToCart } = useCart();
     
     useEffect(() => {
         fetch(`http://localhost:8070/clothing-store/backend/api/products.php?id=${id}`)
@@ -33,6 +35,11 @@ function ProductsDetail(){
     const formattedPrice = Number(product.gia).toLocaleString("vi-VN");
     const totalPrice = Number(product.gia) * quantity;
     const formattedTotalPrice = totalPrice.toLocaleString("vi-VN");
+
+    const handleAddToCart = () => {
+        addToCart(product, quantity);
+        alert(`Đã thêm ${quantity} ${product.ten_sp} vào giỏ hàng!`);
+    };
 
     return (
         <div className="product-detail">
@@ -75,7 +82,9 @@ function ProductsDetail(){
                 </p>
 
                 <div className="product-actions">
-                    <button className="cart-button">Thêm vào giỏ hàng</button>
+                    <button className="cart-button" onClick={handleAddToCart}>
+                        Thêm vào giỏ hàng
+                    </button>
                     <button
                         className="buy-button"
                         onClick={() => navigate(`/checkout/${product.id}?quantity=${quantity}`)}
